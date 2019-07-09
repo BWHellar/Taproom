@@ -7,21 +7,25 @@ function BeerList(props){
   return (
     <div>
       <hr/>
-      {props.beerList.map((beer) =>
-        <Beer names={beer.names}
+      {Object.keys(props.beerList).map(function(beerId){
+        var beer = props.beerList[beerId];
+        return <Beer names= {beer.names}
           brew={beer.brew}
           desc={beer.desc}
           formattedWaitTime={beer.formattedWaitTime}
           currentRouterPath={props.currentRouterPath}
-          key={beer.id}/>
-      )}
+          key={beerId}
+          onBeerSelection={props.onBeerSelection}
+          beerId={beerId}/>;
+      })}
     </div>
   );
 }
 
 BeerList.propTypes = {
-  beerList: PropTypes.array,
-  currentRouterPath: PropTypes.string
+  beerList: PropTypes.object,
+  currentRouterPath: PropTypes.string,
+  onBeerSelection: PropTypes.func
 };
 
 export default BeerList;

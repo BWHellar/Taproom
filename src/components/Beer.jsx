@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'moment';
 
 function Beer(props){
   const beerInformation =
-    <div>
+    <div >
     <style jsx>{`
         div {
           background-color: red;
@@ -13,12 +12,11 @@ function Beer(props){
       `}</style>
       <h3>{props.brew} - {props.names}</h3>
       <h4>Beer tapped {props.formattedWaitTime} ago</h4>
-      <p><em>{props.desc}</em></p>
       <hr/>
     </div>
     if (props.currentRouterPath === '/admin'){
     return (
-      <div onClick={() => {alert('hey, you just clicked the ticket belonging to ' + props.names);}}>
+      <div onClick={() => {props.onBeerSelection(props.beerId);}}>
         {beerInformation}
       </div>
     );
@@ -37,7 +35,9 @@ Beer.propTypes = {
   brew: PropTypes.string.isRequired,
   desc: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
-  currentRouterPath: PropTypes.string
+  currentRouterPath: PropTypes.string,
+  onBeerSelection: PropTypes.func,
+  beerId: PropTypes.string.isRequired
 };
 
 export default Beer;

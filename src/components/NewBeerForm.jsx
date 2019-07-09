@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { v4 } from 'uuid';
 import Moment from 'moment';
 
 function NewBeerForm(props){
@@ -10,7 +9,7 @@ function NewBeerForm(props){
 
   function handleNewBeerFormSubmission(event) {
     event.preventDefault();
-    props.onNewBeerCreation({names: _names.value, brew: _brew.value, desc: _desc.value, id: v4(), timeOpen: new Moment()});
+    props.onNewBeerCreation({names: _names.value, brew: _brew.value, desc: _desc.value, timeOpen: new Moment()});
     _names.value = '';
     _brew.value = '';
     _desc.value = '';
